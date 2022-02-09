@@ -1,17 +1,17 @@
-utilizando el sistema. ComponentModel. DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
-espacio de nombres ElOrientalVirtualMarcoMoreno. Modelos
+namespace ElOrientalVirtualMarcoMoreno.Models
 {
-    clase pública Categoria
+    public class Categoria
     {
-        [Llave]
-        public int IdCategoria { get; poner; }
+         [Key]
+        public int IdCategoria { get; set; }
         [StringLength(100)]
-        [Required(ErrorMessage ="El Nombre del Producto es requerido.")]
-         public string NombreCategoria { get; poner; }
+        [Required(ErrorMessage ="El Nombre de la categoria es requerido.")]
+        public string NombreCategoria { get; set; }   
         [StringLength(500)]
         [Required(ErrorMessage ="La descripcion es requerida.")]
-        cadena pública Descripcion { get; poner; }
+        public string DescripcionCategoria { get; set; }
 
     }
 }
