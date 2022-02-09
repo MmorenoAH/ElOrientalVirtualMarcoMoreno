@@ -14,7 +14,7 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         [Required(ErrorMessage ="La descripcion es requerida.")]
         public string DescripcionProducto { get; set; }
         [StringLength(1000)]
-        public string Ruta { get; set; }
+        public string RutaProducto { get; set; }
 
     }
 }
