@@ -6,7 +6,7 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     {
         [Key]
         public int IdCategoria { get; set; }
-        [StringLength(100)]
+        [StringLength(20)]
         [Required(ErrorMessage ="El Nombre de la categoria es requerido.")]
         public string NombreCategoria { get; set; }   
         [StringLength(500)]

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ElOrientalVirtualMarcoMoreno.Models
 {
@@ -6,6 +7,11 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     {
         [Key]
         public int IdProducto { get; set; }
+        [ForeignKey("IdProducto")]
+        public int IdCategoria { get; set; }
+        public Categoria Categoria { get; set; }
+
+
         [StringLength(100)]
         [Required(ErrorMessage ="El Nombre del Producto es requerido.")]
         public string NombreProducto { get; set; }   

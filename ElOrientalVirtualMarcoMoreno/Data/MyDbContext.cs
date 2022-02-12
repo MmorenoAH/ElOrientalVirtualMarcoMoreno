@@ -13,5 +13,7 @@ namespace ElOrientalVirtualMarcoMoreno.Data
         public DbSet<Producto> Producto { get; set; }
         
         public DbSet<Categoria> Categoria {get; set; }
+
+        public DbSet<ModuloVirtual> ModuloVirtual { get; set; }
     }
 }
