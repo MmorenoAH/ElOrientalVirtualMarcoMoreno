@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ElOrientalVirtualMarcoMoreno.Models
@@ -12,6 +13,8 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         [StringLength(500)]
         [Required(ErrorMessage ="La descripcion es requerida.")]
         public string DescripcionCategoria { get; set; }
+
+        public DateTime FechaCreacion { get; set; }= DateTime.Now;
 
     }
 }

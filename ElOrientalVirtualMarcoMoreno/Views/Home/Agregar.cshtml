@@ -4,35 +4,32 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="col-form-label">Nombre del Producto</label>
-                <input class="form-control" type="text" />
+                <label for="formFile" class="form-label">Nombre</label>
+                <input type="text" name="NombreProducto" class="form-control" />
             </div>
             <div class="form-group">
-                <label class="col-form-label">Precio</label>
-                <input class="form-control" type="text" />
+                <label for="formFile" class="form-label">Precio</label>
+                <input type="text" name="PrecioProducto" class="form-control" />
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="formFile" class="form-label">Descripcion</label>
+                <input type="text" name="DescripcionProducto" class="form-control" />
             </div>
             <div class="mb-auto">
                 <label for="formFile" class="form-label">Agregar Imagen</label>
-                <input class="form-control" type="file" id="formFile">
+                <input type="" name="DescripcionProducto" class="form-control" />
             </div>
         </div>
         <!--Categoria del Producto-->
         <div class="col-md-6">
-            <select class="form-control">
-                <option>Alimentos / Bebidas</option>
-                <option>Hogar</option>
-                <option>Vehiculos</option>
-                <option>Herramientas</option>
-                <option>Refacciones</option>
-                <option>Electronica</option>
-            </select>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                <select class="form-select" id="inputGroupSelect01">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
         </div>
     </div>
@@ -40,4 +37,6 @@
 
 <hr />
 
-<a class="btn btn-outline-info">Guardar</a>
+<div class="btn-group">
+    <input type="submit" value="Guardar" class="btn btn-success" />
+</div>

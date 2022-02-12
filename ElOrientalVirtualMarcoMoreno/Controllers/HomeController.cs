@@ -1,4 +1,5 @@
-﻿using ElOrientalVirtualMarcoMoreno.Models;
+﻿using ElOrientalVirtualMarcoMoreno.Data;
+using ElOrientalVirtualMarcoMoreno.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +13,12 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly MyDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MyDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -38,6 +41,14 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         {
             return View();
         }
+
+        public IActionResult AgregarProducto(Producto p)
+        {
+            _context.Producto.Add(p);
+            _context.SaveChanges();
+            return View();
+        }    
+
 
     }
 }
