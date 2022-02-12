@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElOrientalVirtualMarcoMoreno.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220205225609_migracion-producto")]
-    partial class migracionproducto
+    [Migration("20220212194736_migracion-marco1")]
+    partial class migracionmarco1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,31 +20,53 @@ namespace ElOrientalVirtualMarcoMoreno.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ElOrientalVirtualMarcoMoreno.Models.Producto", b =>
+            modelBuilder.Entity("ElOrientalVirtualMarcoMoreno.Models.Categoria", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdCategoria")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descripcion")
+                    b.Property<string>("DescripcionCategoria")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("NombreCategoria")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double>("Precio")
+                    b.HasKey("IdCategoria");
+
+                    b.ToTable("Categoria");
+                });
+
+            modelBuilder.Entity("ElOrientalVirtualMarcoMoreno.Models.Producto", b =>
+                {
+                    b.Property<int>("IdProducto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DescripcionProducto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("NombreProducto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<double>("PrecioProducto")
                         .HasColumnType("float");
 
-                    b.Property<string>("Ruta")
+                    b.Property<string>("RutaProductoImagen")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdProducto");
 
                     b.ToTable("Producto");
                 });
