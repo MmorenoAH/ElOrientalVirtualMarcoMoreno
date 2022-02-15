@@ -11,30 +11,33 @@
                 <label for="formFile" class="form-label">Precio</label>
                 <input type="text" name="PrecioProducto" class="form-control" />
             </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Descripcion</label>
-                <input type="text" name="DescripcionProducto" class="form-control" />
+            <div class="form-group">
+                <label for="formFile">Descripcion</label>
+                <div class="input-group">
+                    <textarea class="form-control" name="DescripcionProducto" rows="3"></textarea>
+                </div>
             </div>
-            
+
         </div>
         <!--Categoria del Producto-->
         <div class="col-md-6">
-            <div class="input-group mb-3">
+            <div class="input-group">
                 <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <select class="form-select col-md-8" id="inputGroupSelect01">
                     <option selected>Seleccione...</option>
-                    <option value="1">Ropa</option>
-                    <option value="2">Alimentos</option>
-                    <option value="3">Hogar</option>
-                    <option value="3">Vehiculo</option>
-                    <option value="3">Herramienas</option>
-                    <option value="3">Refacciones</option>
-                    <option value="3">Electrónica</option>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Alimentos">Alimentos</option>
+                    <option value="Bebida">Bebida</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Vehiculo">Vehiculo</option>
+                    <option value="Herramienas">Herramienas</option>
+                    <option value="Refacciones">Refacciones</option>
+                    <option value="Electrónica">Electrónica</option>
                 </select>
             </div>
             <div class="mb-auto">
-                <label for="formFile" class="form-label">Agregar Imagen</label>
-                <input type="image" name="DescripcionProducto" class="form-control" />
+                <label for="formfile" class="form-label">Agregar Imagen</label>
+                <input type="file" name="DescripcionProducto" class="form-control-file" />
             </div>
         </div>
     </div>
