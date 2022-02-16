@@ -1,6 +1,8 @@
-﻿<h1>Ingresar datos del producto</h1>
+﻿@using ElOrientalVirtualMarcoMoreno.Models.CategoriaViewModel
+@model CategoriaViewModel
+<h1>Ingresar datos del producto</h1>
 
-<form>
+<form asp-action="Agregar">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -21,19 +23,10 @@
         </div>
         <!--Categoria del Producto-->
         <div class="col-md-6">
-            <div class="input-group">
-                <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
-                <select class="form-select col-md-8" id="inputGroupSelect01">
-                    <option selected>Seleccione...</option>
-                    <option value="Ropa">Ropa</option>
-                    <option value="Alimentos">Alimentos</option>
-                    <option value="Bebida">Bebida</option>
-                    <option value="Hogar">Hogar</option>
-                    <option value="Vehiculo">Vehiculo</option>
-                    <option value="Herramienas">Herramienas</option>
-                    <option value="Refacciones">Refacciones</option>
-                    <option value="Electrónica">Electrónica</option>
-                </select>
+            <div class="form-group">
+                <label asp-for="IdCategoria" class="control-label"></label>
+                <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.Categoria"></select>
+                <span asp-validation-for="IdCategoria" class="text-danger"></span>
             </div>
             <div class="mb-auto">
                 <label for="formfile" class="form-label">Agregar Imagen</label>
@@ -41,10 +34,17 @@
             </div>
         </div>
     </div>
+
+    <hr />
+
+    <div class="btn-group">
+        <input type="submit" value="Guardar" class="btn btn-success" />
+    </div>
 </form>
 
-<hr />
 
-<div class="btn-group">
-    <input type="submit" value="Guardar" class="btn btn-success" />
-</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

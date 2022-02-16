@@ -1,6 +1,8 @@
 ﻿using ElOrientalVirtualMarcoMoreno.Data;
 using ElOrientalVirtualMarcoMoreno.Models;
+using ElOrientalVirtualMarcoMoreno.Models.CategoriaViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -39,16 +41,24 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
 
         public IActionResult Agregar()
         {
+            ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria");
             return View();
         }
 
-        public IActionResult AgregarProducto(Producto p)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Agregar(Producto p)
         {
-            _context.Producto.Add(p);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Producto.Add(p);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Agregar));
+            }
+            ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", p.IdCategoria);
+            
             return View();
-        }    
-
+        }
 
     }
 }

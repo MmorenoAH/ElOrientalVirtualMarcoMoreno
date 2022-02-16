@@ -1,0 +1,42 @@
+﻿@model List<Categoria>
+
+<h1>Categorias</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Fecha de Creacion
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Cat in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(c => Cat.IdCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(c => Cat.NombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(c => Cat.DescripcionCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(c => Cat.FechaCreacion)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
