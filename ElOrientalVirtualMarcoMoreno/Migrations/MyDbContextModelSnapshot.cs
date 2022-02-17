@@ -76,9 +76,6 @@ namespace ElOrientalVirtualMarcoMoreno.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoriaIdCategoria")
-                        .HasColumnType("int");
-
                     b.Property<string>("DescripcionProducto")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)")
@@ -104,7 +101,7 @@ namespace ElOrientalVirtualMarcoMoreno.Migrations
 
                     b.HasKey("IdProducto");
 
-                    b.HasIndex("CategoriaIdCategoria");
+                    b.HasIndex("IdCategoria");
 
                     b.ToTable("Producto");
                 });
@@ -113,7 +110,9 @@ namespace ElOrientalVirtualMarcoMoreno.Migrations
                 {
                     b.HasOne("ElOrientalVirtualMarcoMoreno.Models.Categoria", "Categoria")
                         .WithMany()
-                        .HasForeignKey("CategoriaIdCategoria");
+                        .HasForeignKey("IdCategoria")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

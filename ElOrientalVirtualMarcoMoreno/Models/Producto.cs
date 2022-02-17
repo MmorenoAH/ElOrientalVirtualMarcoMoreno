@@ -8,9 +8,10 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     {
         [Key]
         public int IdProducto { get; set; }     
-        [ForeignKey("IdProducto")]
+        [ForeignKey("Categoria")]
         public int IdCategoria { get; set; }
-        public Categoria Categoria { get; set; }
+        [ForeignKey("IdCategoria")]
+        public virtual Categoria Categoria { get; set; }
 
 
         [StringLength(100)]
