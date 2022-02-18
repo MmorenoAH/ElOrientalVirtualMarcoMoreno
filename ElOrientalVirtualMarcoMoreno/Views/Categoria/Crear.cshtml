@@ -1,0 +1,29 @@
+﻿
+<h1>Crear Categoria</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label for="formFile" class="form-label">Nombre</label>
+                <input type="text" name="NombreCategoria" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="formFile" class="form-label">Descripcion</label>
+                <div class="input-group">
+                    <textarea class="form-control" name="DescripcionCategoria" rows="3"></textarea>
+                </div>
+            </div>
+
+            <hr />
+            <div class="btn-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using ElOrientalVirtualMarcoMoreno.Data;
+using ElOrientalVirtualMarcoMoreno.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,18 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         public CategoriaController(MyDbContext context)
         {
             _context = context;
+        }
+
+        public IActionResult Crear()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Crear(Categoria c)
+        {
+            _context.Categoria.Add(c);
+            _context.SaveChanges();
+            return View();
         }
 
         public async Task<IActionResult> Index()

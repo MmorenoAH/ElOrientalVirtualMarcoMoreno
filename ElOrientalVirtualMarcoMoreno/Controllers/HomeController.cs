@@ -53,7 +53,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             {
                 _context.Producto.Add(p);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Agregar));
+                return View();
             }
             ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", p.IdCategoria);
             

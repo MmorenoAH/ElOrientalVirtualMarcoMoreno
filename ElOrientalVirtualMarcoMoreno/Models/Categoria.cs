@@ -14,7 +14,7 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         [Required(ErrorMessage ="La descripcion es requerida.")]
         public string DescripcionCategoria { get; set; }
 
-        public DateTime FechaCreacion { get; set; }= DateTime.Now;
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
     }
 }
