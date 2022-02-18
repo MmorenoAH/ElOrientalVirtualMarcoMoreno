@@ -1,0 +1,64 @@
+﻿@model List<Producto>
+
+<h1>Producto</h1>
+
+<p>
+    <a asp-action="Agregar">Agregar</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Categoría
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Imagen
+            </th>
+            <th>
+                Fecha de Creación
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var prod in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(c => prod.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(c => prod.Categoria.NombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(c => prod.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(c => prod.PrecioProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(c => prod.DescripcionProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(c => prod.RutaProductoImagen)
+            </td>
+            <td>
+                @Html.DisplayFor(c => prod.FechaCreacion)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
