@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ModuloVirtual>
 <h1>Crear Usuario</h1>
 
 <p>
@@ -23,6 +23,22 @@
         </tr>
     </thead>
     <tbody>
-
+       @foreach (var mod in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => mod.IdModulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => mod.IdPropietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => mod.DescripcionModulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => mod.FechaCreacion)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

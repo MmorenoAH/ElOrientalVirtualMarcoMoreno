@@ -1,0 +1,28 @@
+﻿@model Categoria
+<h1>Editar Categoria</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarCategoria">           
+
+            <div class="form-group">
+                <label for="formFile" class="form-label">Nombre</label>
+                <input type="text" name="NombreCategoria" value="@Model.NombreCategoria" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="formFile" class="form-label">Descripcion</label>
+                <div class="input-group" >
+                    <textarea class="form-control" name="DescripcionCategoria" rows="3">@Model.DescripcionCategoria</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="IdCategoria" value="@Model.IdCategoria"/>
+            <hr />
+            <div class="btn-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+
+        </form>
+    </div>
+</div>

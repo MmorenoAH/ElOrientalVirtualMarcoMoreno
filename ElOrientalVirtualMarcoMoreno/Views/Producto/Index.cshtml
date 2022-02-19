@@ -30,6 +30,9 @@
             <th>
                 Fecha de Creación
             </th>
+            <th>
+                Acciones
+            </th>
         </tr>
     </thead>
 
@@ -58,6 +61,11 @@
             <td>
                 @Html.DisplayFor(c => prod.FechaCreacion)
             </td>
+            <td>
+                <a href="@Url.Action("EditarProducto", new{id = prod.IdProducto})">Editar</a>
+                 <a href="@Url.Action("EliminarProducto", new{id = prod.IdProducto})">Eliminar</a>
+            </td>
+
         </tr>
         }
     </tbody>

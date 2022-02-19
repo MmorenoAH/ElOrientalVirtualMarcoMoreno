@@ -1,5 +1,7 @@
 ﻿using ElOrientalVirtualMarcoMoreno.Data;
+using ElOrientalVirtualMarcoMoreno.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,20 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Crear()
         {
             return View();
+        }
+        public IActionResult Crear(ModuloVirtual m)
+        {
+            _context.ModuloVirtual.Add(m);
+            _context.SaveChanges();
+            return View();
+        }
+        public async Task<IActionResult> Index()
+        {
+            var modulo = _context.ModuloVirtual;
+            return View(await modulo.ToListAsync());
         }
     }
 }
