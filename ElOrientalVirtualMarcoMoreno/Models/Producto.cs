@@ -24,6 +24,7 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         public string DescripcionProducto { get; set; }
         [StringLength(1000)]
         public string RutaProductoImagen { get; set; }
+        [DataType(DataType.Date)]
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
     }

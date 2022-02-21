@@ -39,7 +39,7 @@
                 @Html.DisplayFor(c => Cat.DescripcionCategoria)
             </td>
             <td>
-                @Html.DisplayFor(c => Cat.FechaCreacion)
+                @Html.DisplayFor(c => Cat.FechaCreacion, "{0:dd/MM/yyyy}")
             </td>
             <td>
                 <a href="@Url.Action("EditarCategoria", new{id = Cat.IdCategoria})">Editar</a>

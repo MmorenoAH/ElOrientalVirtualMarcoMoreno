@@ -13,6 +13,7 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         [Required]
         [StringLength(500)]
         public string DescripcionModulo { get; set; }
+        [DataType(DataType.Date)]
         public DateTime FechaCreacion { get; set; }=DateTime.Now;
     }
 }
