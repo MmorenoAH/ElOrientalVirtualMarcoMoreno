@@ -7,6 +7,11 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     {
        [Key]
        public int IdPropietario { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string NombrePropietario { get; set; }
+
+        public DateTime FechaCeacion { get; set; } = DateTime.Now;
         
     }
 }
