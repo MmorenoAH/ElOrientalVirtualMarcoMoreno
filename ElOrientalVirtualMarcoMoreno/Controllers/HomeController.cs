@@ -2,6 +2,7 @@
 using ElOrientalVirtualMarcoMoreno.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,10 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var Producto = _context.Producto.Include(c => c.Categoria);
+            return View(await Producto.ToListAsync());
         }
 
         public IActionResult Privacy()

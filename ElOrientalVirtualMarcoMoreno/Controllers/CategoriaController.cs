@@ -26,7 +26,8 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         {
             _context.Categoria.Add(c);
             _context.SaveChanges();
-            return View();
+            List<Categoria> cat = _context.Categoria.ToList();
+            return RedirectToAction("Index", cat);
         }
 
         public async Task<IActionResult> Index()

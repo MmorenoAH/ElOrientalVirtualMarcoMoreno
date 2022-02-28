@@ -36,11 +36,11 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             {
                 _context.Producto.Add(p);
                 _context.SaveChanges();
-                return View();
+                return RedirectToAction("Index");
             }
             ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", p.IdCategoria);
 
-            return View("index");
+            return RedirectToAction("Index");
         }
 
         public IActionResult EditarProducto(int id)
