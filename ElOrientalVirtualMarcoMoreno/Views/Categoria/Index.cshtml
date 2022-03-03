@@ -28,24 +28,30 @@
     <tbody>
         @foreach (var Cat in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(c => Cat.IdCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(c => Cat.NombreCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(c => Cat.DescripcionCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(c => Cat.FechaCreacion, "{0:dd/MM/yyyy}")
-            </td>
-            <td>
-                <a href="@Url.Action("EditarCategoria", new{id = Cat.IdCategoria})">Editar</a>
-                 <a href="@Url.Action("EliminarCategoria", new{id= Cat.IdCategoria})">Eliminar</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(c => Cat.IdCategoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => Cat.NombreCategoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => Cat.DescripcionCategoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => Cat.FechaCreacion, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    <a id="btnEditar" href="@Url.Action("EditarCategoria", new{id = Cat.IdCategoria})">Editar</a>
+                    @*<a id="btnEliminar" href="@Url.Action("EliminarCategoria", new{id= Cat.IdCategoria})">Eliminar</a>*@
+                    <a class="Eliminar" href="@Url.Action("javascript:void(0)", new{id = Cat.IdCategoria})">Eliminar</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+
+@section Scripts{
+    <script src="~/js/Catergoria.js"></script>
+}

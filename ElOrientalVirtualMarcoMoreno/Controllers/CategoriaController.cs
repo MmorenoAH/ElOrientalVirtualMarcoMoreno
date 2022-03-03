@@ -24,10 +24,25 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         [HttpPost]
         public IActionResult Crear(Categoria c)
         {
-            _context.Categoria.Add(c);
-            _context.SaveChanges();
-            List<Categoria> cat = _context.Categoria.ToList();
-            return RedirectToAction("Index", cat);
+            if (string.IsNullOrEmpty(c.NombreCategoria))
+            {
+                return Json(new
+                {
+                    Success = false,
+                    Message = "El nombre de la categoria esta vacio."
+                }); ;
+            }
+            else
+            {
+                _context.Categoria.Add(c);
+                _context.SaveChanges();
+                List<Categoria> cat = _context.Categoria.ToList();
+                return Json(new
+                {
+                    Success = true,
+                    Message = "Categoria guardada correctamente."
+                }); ;
+            }
         }
 
         public async Task<IActionResult> Index()
@@ -66,7 +81,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
            */
             Categoria categoria = _context.Categoria.Where(a => a.IdCategoria == id).FirstOrDefault();
             if (categoria != null)
-                _context.Remove(categoria);
+            _context.Remove(categoria);
             _context.SaveChanges();
             List<Categoria> cat = _context.Categoria.ToList();
             return View("Index", cat);
