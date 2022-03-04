@@ -29,7 +29,7 @@
         datos.done(function (data) {
             if (data.success) {
                 Swal.fire(
-                    'Buen trabajo!',
+                    'Guardado con exito!',
                     data.message,
                     'success'
                 )
@@ -51,23 +51,3 @@
         })
     }
 });
-
-$("#btnEliminar").click(function () {
-    Swal.fire({
-        title: 'Desea Eliminar?',
-        text: "Esta accion no se puede revertir!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, Eliminar!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Eliminado!',
-                'Elemento Elimado.',
-                'success'
-            )
-        }
-    })
-})

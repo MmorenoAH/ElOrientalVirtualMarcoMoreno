@@ -29,7 +29,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
                 return Json(new
                 {
                     Success = false,
-                    Message = "El nombre de la categoria esta vacio."
+                    Message = "El nombre de la categoria esta vacio."                   
                 }); ;
             }
             else
