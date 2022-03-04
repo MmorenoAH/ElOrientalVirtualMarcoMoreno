@@ -35,8 +35,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             else
             {
                 _context.Categoria.Add(c);
-                _context.SaveChanges();
-                List<Categoria> cat = _context.Categoria.ToList();
+                _context.SaveChanges();                
                 return Json(new
                 {
                     Success = true,
@@ -67,8 +66,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             cactual.DescripcionCategoria = c.DescripcionCategoria;
             //Guardamos los cambios
             _context.SaveChanges();
-            List<Categoria> cat = _context.Categoria.ToList();
-            return View("Index", cat);
+            return View("Index");
         }
         public IActionResult EliminarCategoria(int id)
         {

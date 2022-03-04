@@ -39,27 +39,28 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", p.IdCategoria);
-
-            return RedirectToAction("Index");
+            return View("Index");
         }
 
-        public IActionResult EditarProducto(int id)
+        public IActionResult EditarProducto(int id, Producto c)
         {
             Producto modelo = _context.Producto.Where(c => c.IdProducto == id).FirstOrDefault();
+            ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", c.IdCategoria);
             return View("Editar", modelo);
         }
         [HttpPost]
         public IActionResult EditarProducto(Producto p)
         {
             Producto pactual = _context.Producto.Where(c => c.IdProducto == p.IdProducto).FirstOrDefault();
+            pactual.IdProducto = p.IdProducto;
             pactual.NombreProducto = p.NombreProducto;
             pactual.PrecioProducto = p.PrecioProducto;
             pactual.DescripcionProducto = p.DescripcionProducto;
             pactual.IdCategoria = p.IdCategoria;
             pactual.RutaProductoImagen = p.RutaProductoImagen;
             _context.SaveChanges();
-            List<Producto> prod = _context.Producto.ToList();
-            return View("Index");
+            var Producto = _context.Producto.Include(c => c.Categoria);
+            return RedirectToAction("Index");
         }
         public IActionResult EliminarProducto(int id)
         {
@@ -67,7 +68,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             if(prod != null)
                 _context.Remove(prod);
             _context.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
