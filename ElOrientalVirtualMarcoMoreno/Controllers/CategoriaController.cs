@@ -84,5 +84,17 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             List<Categoria> cat = _context.Categoria.ToList();
             return View("Index", cat);
         }
+
+        public IActionResult ObtenerDescripcion (int id)
+        {
+            //string descripcion= _context.Categoria.Where(a => a.IdCategoria == id).FirstOrDefault().DescripcionCategoria;
+            string descripcion = "Sin descripcion.";
+            Categoria categoria = _context.Categoria.Where(a => a.IdCategoria == id).FirstOrDefault();
+            if(categoria != null && !string.IsNullOrEmpty(categoria.DescripcionCategoria))
+            {
+                descripcion = categoria.DescripcionCategoria;
+            }
+            return Json(new { descripcion });
+        }
     }
 }

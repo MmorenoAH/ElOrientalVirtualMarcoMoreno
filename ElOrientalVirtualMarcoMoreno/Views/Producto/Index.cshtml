@@ -9,30 +9,14 @@
 <table class="table table-striped table-responsive">
     <thead class="table-dark">
         <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Categoría
-            </th>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Precio
-            </th>
-            <th>
-                Descripción
-            </th>
-            <th>
-                Imagen
-            </th>
-            <th>
-                Fecha de Creación
-            </th>
-            <th>
-                Acciones
-            </th>
+            <th>Id</th>
+            <th>Categoría</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Imagen</th>
+            <th>Fecha de Creación</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
@@ -40,32 +24,17 @@
         @foreach (var prod in Model)
         {
         <tr>
-            <td>
-                @Html.DisplayFor(c => prod.IdProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(c => prod.Categoria.NombreCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(c => prod.NombreProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(c => prod.PrecioProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(c => prod.DescripcionProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(c => prod.RutaProductoImagen)
-            </td>
-            <td>
-                @Html.DisplayFor(c => prod.FechaCreacion)
-            </td>
+            <td>@Html.DisplayFor(c => prod.IdProducto)</td>
+            <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
+            <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
+            <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
+            <td>@Html.DisplayFor(c => prod.DescripcionProducto)</td>
+            <td>@Html.DisplayFor(c => prod.RutaProductoImagen)</td>
+            <td>@Html.DisplayFor(c => prod.FechaCreacion)</td>
             <td>
                 <a href="@Url.Action("EditarProducto", new{id = prod.IdProducto})">Editar</a>
                  <a href="@Url.Action("EliminarProducto", new{id = prod.IdProducto})">Eliminar</a>
             </td>
-
         </tr>
         }
     </tbody>
