@@ -70,5 +70,17 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult ObtenerDescripcion(int id)
+        {
+            //string descripcion= _context.Categoria.Where(a => a.IdCategoria == id).FirstOrDefault().DescripcionCategoria;
+            string descripcion = "Sin descripcion.";
+            Producto producto = _context.Producto.Where(a => a.IdProducto == id).FirstOrDefault();
+            if (producto != null && !string.IsNullOrEmpty(producto.DescripcionProducto))
+            {
+                descripcion = producto.DescripcionProducto;
+            }
+            return Json(new { descripcion });
+        }
     }
 }
