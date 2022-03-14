@@ -6,14 +6,13 @@
     <a asp-action="Agregar" class="btn btn-success">Agregar</a>
 </p>
 
-<table class="class=" table table-striped col-12 " id="tablaProducto">
+<table class="table table-striped col-12" id="tablaProducto">
     <thead class="table-dark">
         <tr>
             <th>Id</th>
             <th>Categoría</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Descripción</th>
             <th>Imagen</th>
             <th>Fecha de Creación</th>
             <th>Acciones</th>
@@ -23,19 +22,19 @@
     <tbody>
         @foreach (var prod in Model)
         {
-        <tr>
-            <td>@Html.DisplayFor(c => prod.IdProducto)</td>
-            <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
-            <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
-            <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
-            <td>@Html.DisplayFor(c => prod.RutaProductoImagen)</td>
-            <td>@Html.DisplayFor(c => prod.FechaCreacion)</td>
-            <td>
-                <a data-id="@prod.IdProducto" class="btn btn-success btnMostrar" href="javascript:void(0)">Ver Descripcion</a>
-                <a class="btn btn-info btnEditar" href="@Url.Action("EditarProducto", new{id = prod.IdProducto})">Editar</a>
-                <a class="btn btn-danger btnEliminar" href="@Url.Action("EliminarProducto", new{id= prod.IdProducto})">Eliminar</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@Html.DisplayFor(c => prod.IdProducto)</td>
+                <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
+                <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
+                <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
+                <td>@Html.DisplayFor(c => prod.RutaProductoImagen)</td>
+                <td>@Html.DisplayFor(c => prod.FechaCreacion)</td>
+                <td>
+                    <a data-id="@prod.IdProducto" class="btn btn-success btnMostrar" href="javascript:void(0)">Ver Descripcion</a>
+                    <a class="btn btn-info btnEditar" href="@Url.Action("EditarProducto", new{id = prod.IdProducto})">Editar</a>
+                    <a class="btn btn-danger btnEliminar" href="@Url.Action("EliminarProducto", new{id= prod.IdProducto})">Eliminar</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
@@ -44,7 +43,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Descripción</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -52,24 +51,21 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 @section Scripts{
-<script>
-         $('#tablaProducto').DataTable( {
-        "pagingType": "full_numbers"
-    } );
+    <script>
+        $('#tablaProducto').DataTable();
 
 
-        $(".btnMostrar").click(function(){
+        $(".btnMostrar").click(function () {
             var id = $(this).attr("data-id")
             $("#exampleModal").modal("show");
 
             var datos = $.ajax({
-                url: "Categoria/ObtenerDescripcion",
+                url: "Producto/ObtenerDescripcion",
                 type: "POST",
                 data: {
                     "id": id
@@ -78,15 +74,15 @@
 
             datos.done(function (data) {
                 $(".valor-descripcion").text(data.descripcion),
-                $("#exampleModal").modal("show")
+                    $("#exampleModal").modal("show")
             })
             datos.fail(function () {
-            notif({
+                notif({
                     msg: "Error al guardar.",
                     type: "error"
                 });
             })
         })
 
-</script>
+    </script>
 }

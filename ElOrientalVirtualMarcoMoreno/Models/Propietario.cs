@@ -10,7 +10,7 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         [Required]
         [StringLength(50)]
         public string NombrePropietario { get; set; }
-
+        [DataType(DataType.Date)]
         public DateTime FechaCeacion { get; set; } = DateTime.Now;
         
     }

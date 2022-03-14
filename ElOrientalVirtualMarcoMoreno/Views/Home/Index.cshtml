@@ -1,16 +1,17 @@
 ﻿@model List<Producto>
-<h1>Muestra de los productos</h1>
-<h2>Productos</h2>
-<table class="table table-striped table-responsive">
+
+<h1>Productos en Oferta</h1>
+
+<table class="table table-striped col-12" id="tablaProducto">
     <thead class="table-dark">
         <tr>
             <th>Id</th>
             <th>Categoría</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Descripción</th>
             <th>Imagen</th>
             <th>Fecha de Creación</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
@@ -22,10 +23,60 @@
                 <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
                 <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
                 <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
-                <td>@Html.DisplayFor(c => prod.DescripcionProducto)</td>
                 <td>@Html.DisplayFor(c => prod.RutaProductoImagen)</td>
                 <td>@Html.DisplayFor(c => prod.FechaCreacion)</td>
+                <td>
+                    <a data-id="@prod.IdProducto" class="btn btn-success btnMostrar" href="javascript:void(0)">Ver Descripcion</a>                   
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Descripción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span class="valor-descripcion"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $('#tablaProducto').DataTable();
+
+
+        $(".btnMostrar").click(function () {
+            var id = $(this).attr("data-id")
+            $("#exampleModal").modal("show");
+
+            var datos = $.ajax({
+                url: "Producto/ObtenerDescripcion",
+                type: "POST",
+                data: {
+                    "id": id
+                }
+            });
+
+            datos.done(function (data) {
+                $(".valor-descripcion").text(data.descripcion),
+                    $("#exampleModal").modal("show")
+            })
+            datos.fail(function () {
+                notif({
+                    msg: "Error al Obtener.",
+                    type: "error"
+                });
+            })
+        })
+
+    </script>
+}

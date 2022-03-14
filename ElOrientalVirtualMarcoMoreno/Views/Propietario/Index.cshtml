@@ -1,22 +1,33 @@
 ﻿@model List<Propietario>
 
-<h1>Crear Usuario</h1>
+<h1>Propietario</h1>
 
-<hr />
+<p>
+    <a asp-action="Crear" class="btn btn-success">Crear</a>
+</p>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Crear">
-            <div asp-validation-summary="ModelOnly" class="text-danger">
-                <div class="form-group">
-                    <label for="formFile" class="form-label">Nombre</label>
-                    <input type="text" name="NombrePropietario" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="formFile" class="form-label">Nombre</label>
-                    <input type="text" name="NombrePropietario" class="form-control" />
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<table class="table table-striped col-12 " id="tablaCategoria">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Fecha de Creacion</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var prop in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(c => prop.IdPropietario)</td>
+                <td>@Html.DisplayFor(c => prop.NombrePropietario)</td>
+                <td>@Html.DisplayFor(c => prop.FechaCeacion)</td>
+                <td>
+                    <a class="btn btn-info btnEditar" href="@Url.Action("EditarPropietario", new{id = prop.IdPropietario})">Editar</a>
+                    <a class="btn btn-danger btnEliminar" href="@Url.Action("EliminarPropietario", new{id= prop.IdPropietario})">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
