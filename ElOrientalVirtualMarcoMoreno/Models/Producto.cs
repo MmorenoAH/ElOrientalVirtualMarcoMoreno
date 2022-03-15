@@ -27,5 +27,6 @@ namespace ElOrientalVirtualMarcoMoreno.Models
         [DataType(DataType.Date)]
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
+
     }
 }

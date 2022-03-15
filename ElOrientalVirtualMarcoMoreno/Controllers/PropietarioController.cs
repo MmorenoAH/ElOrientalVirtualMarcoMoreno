@@ -62,7 +62,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             practual.NombrePropietario = c.NombrePropietario;
             //Guardamos los cambios
             _context.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
         public IActionResult EliminarPropietario(int id)
         {

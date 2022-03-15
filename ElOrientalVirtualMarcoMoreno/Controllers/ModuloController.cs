@@ -1,6 +1,7 @@
 ﻿using ElOrientalVirtualMarcoMoreno.Data;
 using ElOrientalVirtualMarcoMoreno.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,21 +17,28 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         {
             _context = context;
         }
-
-        public IActionResult Crear()
-        {
-            return View();
-        }
-        public IActionResult Crear(ModuloVirtual m)
-        {
-            _context.ModuloVirtual.Add(m);
-            _context.SaveChanges();
-            return View();
-        }
         public async Task<IActionResult> Index()
         {
-            var modulo = _context.ModuloVirtual;
+            var modulo = _context.ModuloVirtual.Include(c => c.Propietario);
             return View(await modulo.ToListAsync());
         }
+        public IActionResult Crear()
+        {
+            ViewData["Propietario"] = new SelectList(_context.Propietario, "IdPropietario", "NombrePropietario");
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Crear(ModuloVirtual m)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.ModuloVirtual.Add(m);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewData["Propietario"] = new SelectList(_context.Propietario, "IdPropietario", "NombrePropietario");           
+            return View("Index");
+        }
+
     }
 }
