@@ -1,5 +1,7 @@
 ﻿using ElOrientalVirtualMarcoMoreno.Data;
 using ElOrientalVirtualMarcoMoreno.Models;
+using ElOrientalVirtualMarcoMoreno.Models.ViewModel;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +15,11 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
     public class ProductoController : Controller
     {
         private readonly MyDbContext _context;
-        public ProductoController(MyDbContext context)
+        private readonly IWebHostEnvironment _enviroment;
+        public ProductoController(MyDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _enviroment = env;
         }
         public async Task<IActionResult> Index()
         {
@@ -40,6 +44,16 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             }
             ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", p.IdCategoria);
             return View("Index");
+        }
+        public async Task<IActionResult> Upload(UploadModel upload)
+        {
+            var fileName = System.IO.Path.Combine(_enviroment.ContentRootPath,
+                "Uploads", upload.MyFile.FileName);
+            string ruta = fileName.ToString();
+            await upload.MyFile.CopyToAsync(
+                new System.IO.FileStream(fileName, System.IO.FileMode.Create));
+            TempData["message"] = "Archivo Subido";
+            return RedirectToAction("Index");
         }
 
         public IActionResult EditarProducto(int id, Producto c)
@@ -82,5 +96,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             }
             return Json(new { descripcion });
         }
+
+       
     }
 }
