@@ -34,10 +34,11 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Agregar(Producto p)
+        public IActionResult Agregar(Producto p, UploadModel upload)
         {
             if (ModelState.IsValid)
             {
+
                 _context.Producto.Add(p);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

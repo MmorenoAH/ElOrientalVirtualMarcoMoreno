@@ -19,6 +19,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         }
         public async Task<IActionResult> Index()
         {
+
             var modulo = _context.ModuloVirtual.Include(c => c.Propietario);
             return View(await modulo.ToListAsync());
         }
