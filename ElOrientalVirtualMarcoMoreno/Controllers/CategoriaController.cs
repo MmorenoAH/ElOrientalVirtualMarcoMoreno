@@ -66,7 +66,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             cactual.DescripcionCategoria = c.DescripcionCategoria;
             //Guardamos los cambios
             _context.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
         public IActionResult EliminarCategoria(int id)
         {

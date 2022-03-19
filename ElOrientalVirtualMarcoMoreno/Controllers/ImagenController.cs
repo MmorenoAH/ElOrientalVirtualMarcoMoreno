@@ -22,8 +22,8 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         }
         public async Task<IActionResult> Upload(UploadModel upload)
         {
-            var fileName = System.IO.Path.Combine(_enviroment.ContentRootPath,
-                "Uploads", upload.MyFile.FileName);
+            var fileName = System.IO.Path.Combine(_enviroment.WebRootPath,
+                "imagen", upload.MyFile.FileName);
             string ruta = fileName.ToString();
             await upload.MyFile.CopyToAsync(
                 new System.IO.FileStream(fileName, System.IO.FileMode.Create));
