@@ -35,9 +35,15 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Agregar(Producto p, UploadModel upload)
-        {
+        {                    
             if (ModelState.IsValid)
             {
+                var fileName = System.IO.Path.Combine(_enviroment.WebRootPath,
+                "imagen", upload.MyFile.FileName);
+                upload.MyFile.CopyTo(
+                    new System.IO.FileStream(fileName, System.IO.FileMode.Create));
+                string ruta = fileName.ToString();
+                p.RutaProductoImagen = ruta;
 
                 _context.Producto.Add(p);
                 _context.SaveChanges();
@@ -45,16 +51,6 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             }
             ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria", p.IdCategoria);
             return View("Index");
-        }
-        public async Task<IActionResult> Upload(UploadModel upload)
-        {
-            var fileName = System.IO.Path.Combine(_enviroment.WebRootPath,
-                "imagen", upload.MyFile.FileName);
-            string ruta = fileName.ToString();
-            await upload.MyFile.CopyToAsync(
-                new System.IO.FileStream(fileName, System.IO.FileMode.Create));
-            TempData["message"] = "Archivo Subido";
-            return RedirectToAction("Index");
         }
 
         public IActionResult EditarProducto(int id, Producto c)
@@ -97,7 +93,17 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             }
             return Json(new { descripcion });
         }
+        public IActionResult ObtenerImagen(int id)
+        {
+            //string descripcion= _context.Categoria.Where(a => a.IdCategoria == id).FirstOrDefault().DescripcionCategoria;
+            string imagen = "Sin descripcion.";
+            Producto producto = _context.Producto.Where(a => a.IdProducto == id).FirstOrDefault();
+            if (producto != null && !string.IsNullOrEmpty(producto.RutaProductoImagen))
+            {
+                imagen = producto.RutaProductoImagen;
+            }
+            return Json(new { imagen });
+        }
 
-       
     }
 }

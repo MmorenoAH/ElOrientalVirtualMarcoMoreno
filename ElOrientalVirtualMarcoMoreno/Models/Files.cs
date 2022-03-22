@@ -9,5 +9,6 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     {
         public int Id { get; set; }
         public byte[] Filedb { get; set; }
+        public char Path { get; set; }
     }
 }

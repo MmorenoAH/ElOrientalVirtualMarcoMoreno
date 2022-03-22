@@ -20,4 +20,8 @@
     <Folder Include="Uploads\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\imagen\perfil.jpg" />
+  </ItemGroup>
+
 </Project>

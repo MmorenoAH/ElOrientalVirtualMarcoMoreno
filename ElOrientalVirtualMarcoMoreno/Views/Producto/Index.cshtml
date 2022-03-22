@@ -6,7 +6,7 @@
     <a asp-action="Agregar" class="btn btn-success">Agregar</a>
 </p>
 
-<table class="table table-striped col-12" id="tablaProducto">
+<table class="table table-responsive col-12" id="tablaProducto">
     <thead class="table-dark">
         <tr>
             <th>Id</th>
@@ -27,9 +27,9 @@
                 <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
                 <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
                 <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
-                <td>@Html.DisplayFor(c => prod.RutaProductoImagen)</td>
+                <td><img src="@Html.DisplayFor(c => prod.RutaProductoImagen)" width="30" height="30"/></td>
                 <td>@Html.DisplayFor(c => prod.FechaCreacion)</td>
-                <td>
+                <td>                   
                     <a data-id="@prod.IdProducto" class="btn btn-success btnMostrar" href="javascript:void(0)">Ver Descripcion</a>
                     <a class="btn btn-info btnEditar" href="@Url.Action("EditarProducto", new{id = prod.IdProducto})">Editar</a>
                     <a class="btn btn-danger btnEliminar" href="@Url.Action("EliminarProducto", new{id= prod.IdProducto})">Eliminar</a>
@@ -55,6 +55,9 @@
         </div>
     </div>
 </div>
+
+
+
 @section Scripts{
     <script>
         $('#tablaProducto').DataTable();
@@ -83,6 +86,8 @@
                 });
             })
         })
+
+      
 
     </script>
 }
