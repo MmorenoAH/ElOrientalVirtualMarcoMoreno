@@ -35,16 +35,22 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Agregar(Producto p, UploadModel upload)
-        {                    
+        {
+            string ruta = "/imagen/Sesion.png";
             if (ModelState.IsValid)
             {
-                var fileName = System.IO.Path.Combine(_enviroment.WebRootPath,
+                if(upload.MyFile != null)
+                {
+                    var fileName = System.IO.Path.Combine(_enviroment.WebRootPath,
                 "imagen", upload.MyFile.FileName);
-                upload.MyFile.CopyTo(
-                    new System.IO.FileStream(fileName, System.IO.FileMode.Create));
-                string ruta = fileName.ToString();
+                    upload.MyFile.CopyTo(
+                        new System.IO.FileStream(fileName, System.IO.FileMode.Create));
+                    var fileruta = System.IO.Path.Combine("/imagen", upload.MyFile.FileName);
+                    ruta = fileruta.ToString();
+                }
+                
                 p.RutaProductoImagen = ruta;
-
+                
                 _context.Producto.Add(p);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
