@@ -24,7 +24,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             return View(await modulo.ToListAsync());
         }
         public IActionResult Crear()
-        {            
+        {
             return View();
         }
         [HttpPost]
@@ -35,7 +35,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
                 _context.ModuloVirtual.Add(m);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
-            }            
+            }
             return View("Index");
         }
 
@@ -57,21 +57,20 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult EliminarMoludo(int id)
+        public IActionResult EliminarModulo(int id)
         {
-            /*
-             List<Producto> productos = _context.Producto.Where(a => a.IdCategoria == id).ToList();
-             if (productos != null)
-             {
-                 _context.RemoveRange(productos);
-             }
-            */
             ModuloVirtual modulo = _context.ModuloVirtual.Where(a => a.IdModulo == id).FirstOrDefault();
             if (modulo != null)
-                _context.Remove(modulo);
+            _context.Remove(modulo);
             _context.SaveChanges();
             List<ModuloVirtual> mod = _context.ModuloVirtual.ToList();
             return View("Index", mod);
+        }
+
+        public IActionResult MostrarProducto(int id)
+        {
+            List<Producto> productos = _context.Producto.Where(a => a.IdModulo == id).ToList();
+            return View("Productos", productos);
         }
     }
 }

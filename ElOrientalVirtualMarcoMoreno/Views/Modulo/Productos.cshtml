@@ -1,0 +1,17 @@
+﻿@model List<Producto>
+
+<h1>Productos</h1>
+
+<div class="row">
+    @foreach (var prod in Model)
+    {
+        <div class="card col-4" style="width: 18rem;">
+            <img src="@Html.DisplayFor(c => prod.RutaProductoImagen)" class="card-img-top" alt="Sin Foto" width="50" height="300">
+            <div class="card-body">
+                <h5 class="card-title">Articulo: @Html.DisplayFor(c => prod.NombreProducto)</h5>
+                <p class="card-text">Precio: @Html.DisplayFor(c => prod.PrecioProducto)</p>
+            </div>
+        </div>
+       
+    }
+</div>
