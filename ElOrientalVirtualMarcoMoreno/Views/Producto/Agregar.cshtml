@@ -24,6 +24,11 @@
         <!--Categoria del Producto-->
         <div class="col-md-6">
             <div class="form-group">
+                <label asp-for="IdModulo" class="control-label"></label>
+                <select asp-for="IdModulo" class="form-control Categoria" asp-items="ViewBag.Modulo"></select>
+                <span asp-validation-for="IdModulo" class="text-danger"></span>
+            </div> 
+            <div class="form-group">
                 <label asp-for="IdCategoria" class="control-label"></label>
                 <select asp-for="IdCategoria" class="form-control Categoria" asp-items="ViewBag.Categoria"></select>
                 <span asp-validation-for="IdCategoria" class="text-danger"></span>

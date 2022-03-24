@@ -8,10 +8,12 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     {
         [Key]
         public int IdModulo { get; set; }
-        [ForeignKey("Propietaro")]
-        public int IdPropietario { get; set; }
-        [ForeignKey("IdPropietario")]
-        public virtual Propietario Propietario { get; set; }
+        [Required]
+        [Display(Name ="Usuario")]
+        public string IdPropietario { get; set; }
+        [Required]
+        [Display(Name ="Nombre")]
+        public string NombrePropietario { get; set; }
 
         [Required]
         [StringLength(500)]

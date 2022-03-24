@@ -7,12 +7,16 @@ namespace ElOrientalVirtualMarcoMoreno.Models
     public class Producto
     {
         [Key]
-        public int IdProducto { get; set; }     
+        public int IdProducto { get; set; }
+
+        public int IdModulo { get; set; }
+        [ForeignKey("IdModulo")]
+        public virtual ModuloVirtual ModuloVirtual { get; set; }
+
         [ForeignKey("Categoria")]
         public int IdCategoria { get; set; }
         [ForeignKey("IdCategoria")]
         public virtual Categoria Categoria { get; set; }
-
 
         [StringLength(100)]
         [Required(ErrorMessage = "El Nombre del Producto es requerido.")]

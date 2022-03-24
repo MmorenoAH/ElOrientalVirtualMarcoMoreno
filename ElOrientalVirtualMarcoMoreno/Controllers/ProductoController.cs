@@ -30,6 +30,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
         public IActionResult Agregar()
         {
             ViewData["Categoria"] = new SelectList(_context.Categoria, "IdCategoria", "NombreCategoria");
+            ViewData["Modulo"] = new SelectList(_context.ModuloVirtual, "IdModulo", "NombrePropietario");
             return View();
         }
         [HttpPost]
@@ -47,8 +48,7 @@ namespace ElOrientalVirtualMarcoMoreno.Controllers
                         new System.IO.FileStream(fileName, System.IO.FileMode.Create));
                     var fileruta = System.IO.Path.Combine("/imagen", upload.MyFile.FileName);
                     ruta = fileruta.ToString();
-                }
-                
+                }               
                 p.RutaProductoImagen = ruta;
                 
                 _context.Producto.Add(p);

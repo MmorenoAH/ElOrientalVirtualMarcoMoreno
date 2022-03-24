@@ -23,7 +23,7 @@
                 <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
                 <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
                 <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
-                <td>@Html.DisplayFor(c => prod.RutaProductoImagen)</td>
+                <td><img src="@Html.DisplayFor(c => prod.RutaProductoImagen)" width="30" height="30"/></td>
                 <td>@Html.DisplayFor(c => prod.FechaCreacion)</td>
                 <td>
                     <a data-id="@prod.IdProducto" class="btn btn-success btnMostrar" href="javascript:void(0)">Ver Descripcion</a>                   

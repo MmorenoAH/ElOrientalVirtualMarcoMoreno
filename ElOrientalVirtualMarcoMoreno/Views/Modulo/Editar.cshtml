@@ -1,23 +1,24 @@
 ﻿@model ModuloVirtual
 <h1>Agregar Modulo</h1>
 
-<form asp-action="Crear">
+<form asp-action="EditarModulo">
     <div class="row">
         <div class="col-md-6">
             <div class="col-md-6">
+                <input class="id" type="hidden" name="IdModulo" value="@Model.IdModulo" />
                  <div class="form-group">
                 <label for="formFile" class="form-label">Usuario</label>
-                <input type="text" name="IdPropietario" class="form-control Usuario" maxlength="100" />
+                <input type="text" name="IdPropietario" class="form-control Usuario" value="@Model.IdPropietario" maxlength="100" />
             </div>
              <div class="form-group">
                 <label for="formFile" class="form-label">Propietario</label>
-                <input type="text" name="NombrePropietario" class="form-control Propietario" maxlength="100" />
+                <input type="text" name="NombrePropietario" class="form-control Propietario" value="@Model.NombrePropietario" maxlength="100" />
             </div>
             </div>
             <div class="form-group">
                 <label for="formFile">Descripcion</label>
                 <div class="input-group">
-                    <textarea class="form-control Descripcion" name="DescripcionModulo" rows="3" maxlength="500"></textarea>
+                    <textarea class="form-control Descripcion" name="DescripcionModulo" rows="3" maxlength="500">@Model.DescripcionModulo</textarea>
                 </div>
             </div>
 

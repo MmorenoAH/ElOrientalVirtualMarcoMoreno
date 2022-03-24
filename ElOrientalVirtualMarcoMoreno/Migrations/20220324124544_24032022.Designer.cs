@@ -4,14 +4,16 @@ using ElOrientalVirtualMarcoMoreno.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ElOrientalVirtualMarcoMoreno.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220324124544_24032022")]
+    partial class _24032022
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,15 +80,12 @@ namespace ElOrientalVirtualMarcoMoreno.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IdPropietario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NombrePropietario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdPropietario")
+                        .HasColumnType("int");
 
                     b.HasKey("IdModulo");
+
+                    b.HasIndex("IdPropietario");
 
                     b.ToTable("ModuloVirtual");
                 });
@@ -131,6 +130,35 @@ namespace ElOrientalVirtualMarcoMoreno.Migrations
                     b.HasIndex("IdModulo");
 
                     b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("ElOrientalVirtualMarcoMoreno.Models.Propietario", b =>
+                {
+                    b.Property<int>("IdPropietario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaCeacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NombrePropietario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("IdPropietario");
+
+                    b.ToTable("Propietario");
+                });
+
+            modelBuilder.Entity("ElOrientalVirtualMarcoMoreno.Models.ModuloVirtual", b =>
+                {
+                    b.HasOne("ElOrientalVirtualMarcoMoreno.Models.Propietario", "Propietario")
+                        .WithMany()
+                        .HasForeignKey("IdPropietario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ElOrientalVirtualMarcoMoreno.Models.Producto", b =>
