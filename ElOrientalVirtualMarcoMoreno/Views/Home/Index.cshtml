@@ -1,11 +1,10 @@
 ﻿@model List<Producto>
 
 <h1>Productos en Oferta</h1>
-
-<table class="table table-striped col-12" id="tablaProducto">
+<div class="table-responsive">
+<table class="table col-12" id="tablaProducto">
     <thead class="table-dark">
         <tr>
-            <th>Id</th>
             <th>Categoría</th>
             <th>Nombre</th>
             <th>Precio</th>
@@ -19,7 +18,6 @@
         @foreach (var prod in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(c => prod.IdProducto)</td>
                 <td>@Html.DisplayFor(c => prod.Categoria.NombreCategoria)</td>
                 <td>@Html.DisplayFor(c => prod.NombreProducto)</td>
                 <td>@Html.DisplayFor(c => prod.PrecioProducto)</td>
@@ -32,7 +30,7 @@
         }
     </tbody>
 </table>
-
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
